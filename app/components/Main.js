@@ -161,14 +161,14 @@ const Main = () => {
     //   console.error("Error uploading data to Firestore:", error);
     // }
     try {
-    const docRef = await addDoc(collection(db, "orders"), finalData);
-    console.log("Order saved with ID:", docRef.id);
+      const docRef = await addDoc(collection(db, "orders"), finalData);
+      console.log("Order saved with ID:", docRef.id);
 
-    setOrderData({ ...finalData, id: docRef.id }); // keep orderId in state
-    setIsPopupOpen(true);
-  } catch (error) {
-    console.error("Error uploading data to Firestore:", error);
-  }
+      setOrderData({ ...finalData, id: docRef.id }); // keep orderId in state
+      setIsPopupOpen(true);
+    } catch (error) {
+      console.error("Error uploading data to Firestore:", error);
+    }
   };
 
   const handleClosePopup = () => {
@@ -207,7 +207,7 @@ const Main = () => {
             />
           </div>
 
-         <div className="md:w-[30%] h-full sticky top-[88px] p-6 bg-gradient-to-br from-white to-blue-300 border border-gray-200 rounded-lg ">
+          <div className="md:w-[30%] h-full sticky top-[88px] p-6 bg-gradient-to-br from-white to-blue-300 border border-gray-200 rounded-lg ">
             <h2 className="text-xl font-bold mb-4">Order Summary</h2>
 
             <div className="space-y-3 mb-6">
