@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { db } from "@/app/firebaseAdmin"; 
+import { db } from "@/app/firebaseAdmin";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2023-10-16", 
+  apiVersion: "2023-10-16",
 });
 
 export async function POST(req) {
@@ -25,7 +25,10 @@ export async function POST(req) {
     const finalPrice = order?.pricing?.finalPrice;
 
     if (!finalPrice || finalPrice <= 0) {
-      return NextResponse.json({ error: "Invalid order price" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid order price" },
+        { status: 400 }
+      );
     }
 
     const paymentIntent = await stripe.paymentIntents.create({
