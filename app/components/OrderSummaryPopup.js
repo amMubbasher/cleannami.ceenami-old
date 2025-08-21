@@ -1,34 +1,34 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const OrderSummaryPopup = ({ isOpen, onClose, orderData }) => {
   // Prevent body scroll when popup is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
   // Extract data for display
   const {
-    firstName = '',
-    lastName = '',
-    email = '',
-    phone = '',
-    address = '',
-    city = '',
-    state = '',
-    bedrooms = '',
-    scheduledDate = '',
-    scheduledTime = '',
-    frequencyLabel = 'One Time',
+    firstName = "",
+    lastName = "",
+    email = "",
+    phone = "",
+    address = "",
+    city = "",
+    state = "",
+    bedrooms = "",
+    scheduledDate = "",
+    scheduledTime = "",
+    frequencyLabel = "One Time",
     pricing = {},
     addons = [],
   } = orderData || {};
@@ -39,7 +39,7 @@ const OrderSummaryPopup = ({ isOpen, onClose, orderData }) => {
     subtotal = 100,
     couponDiscountAmount = 0,
     frequencyDiscountAmount = 0,
-    finalPrice = 100
+    finalPrice = 100,
   } = pricing || {};
 
   return (
@@ -66,8 +66,8 @@ const OrderSummaryPopup = ({ isOpen, onClose, orderData }) => {
               transition: {
                 type: "spring",
                 stiffness: 300,
-                damping: 30
-              }
+                damping: 30,
+              },
             }}
             exit={{ opacity: 0, y: 50, scale: 0.95 }}
           >
@@ -78,11 +78,15 @@ const OrderSummaryPopup = ({ isOpen, onClose, orderData }) => {
                 animate={{
                   opacity: 1,
                   y: 0,
-                  transition: { delay: 0.2, duration: 0.4 }
+                  transition: { delay: 0.2, duration: 0.4 },
                 }}
               >
-                <h2 className="text-2xl font-bold">Your Booking is Confirmed!</h2>
-                <p className="opacity-90 mt-1">We've received your cleaning request</p>
+                <h2 className="text-2xl font-bold">
+                  Your Booking is Confirmed!
+                </h2>
+                <p className="opacity-90 mt-1">
+                  We've received your cleaning request
+                </p>
               </motion.div>
 
               {/* Close button */}
@@ -90,8 +94,19 @@ const OrderSummaryPopup = ({ isOpen, onClose, orderData }) => {
                 onClick={onClose}
                 className="absolute top-4 right-4 text-white/80 hover:text-white"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -136,10 +151,12 @@ const OrderSummaryPopup = ({ isOpen, onClose, orderData }) => {
                 animate={{
                   opacity: 1,
                   y: 0,
-                  transition: { delay: 0.4, duration: 0.4 }
+                  transition: { delay: 0.4, duration: 0.4 },
                 }}
               >
-                <h3 className="font-medium text-gray-900 mb-3">Price Breakdown</h3>
+                <h3 className="font-medium text-gray-900 mb-3">
+                  Price Breakdown
+                </h3>
 
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
@@ -158,7 +175,7 @@ const OrderSummaryPopup = ({ isOpen, onClose, orderData }) => {
                     <div className="pl-4 pt-1 pb-1 text-xs text-gray-500 border-l-2 border-gray-200">
                       {addons.map((addon, index) => (
                         <div key={index} className="flex justify-between mb-1">
-                          <span>{addon.id.replace('_', ' ')}</span>
+                          <span>{addon.id.replace("_", " ")}</span>
                           <span>${addon.price.toFixed(2)}</span>
                         </div>
                       ))}
@@ -189,7 +206,9 @@ const OrderSummaryPopup = ({ isOpen, onClose, orderData }) => {
 
                 <div className="flex justify-between font-bold text-lg mt-3 pt-2 border-t border-gray-200">
                   <span>Total</span>
-                  <span className="text-blue-600">${finalPrice.toFixed(2)}</span>
+                  <span className="text-blue-600">
+                    ${finalPrice.toFixed(2)}
+                  </span>
                 </div>
               </motion.div>
 
@@ -199,21 +218,25 @@ const OrderSummaryPopup = ({ isOpen, onClose, orderData }) => {
                 animate={{
                   opacity: 1,
                   y: 0,
-                  transition: { delay: 0.5, duration: 0.4 }
+                  transition: { delay: 0.5, duration: 0.4 },
                 }}
               >
-                <h3 className="font-medium text-gray-900 mb-3">Contact Information</h3>
-                <p className="text-sm text-gray-600">{firstName} {lastName}</p>
+                <h3 className="font-medium text-gray-900 mb-3">
+                  Contact Information
+                </h3>
+                <p className="text-sm text-gray-600">
+                  {firstName} {lastName}
+                </p>
                 <p className="text-sm text-gray-600">{email}</p>
                 <p className="text-sm text-gray-600">{phone}</p>
               </motion.div>
             </div>
-    {/* checkout btn */}
-      <div className="px-6 pb-6">
+            {/* checkout btn */}
+            <div className="px-6 pb-6">
               <button
-           onClick={() => {
-  window.location.href = `/checkout?orderId=${orderData.id}`;
-}}
+                onClick={() => {
+                  window.location.href = `/checkout?orderId=${orderData.id}`;
+                }}
                 // onClick={() => window.location.href = "/checkout"}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-md transition"
               >
